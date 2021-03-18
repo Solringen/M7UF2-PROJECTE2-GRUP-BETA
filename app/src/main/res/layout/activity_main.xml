@@ -5,4 +5,37 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" />
+    android:background="#231f20"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logocoleccio"
+        android:layout_width="430dp"
+        android:layout_height="260dp"
+        android:background="#231F20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:srcCompat="@drawable/logocoleccio" />
+
+    <ImageView
+        android:id="@+id/logomuseu"
+        android:layout_width="443dp"
+        android:layout_height="213dp"
+        android:background="#3e88a3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logocoleccio"
+        app:srcCompat="@drawable/logomuseu" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="425dp"
+        android:layout_height="265dp"
+        android:background="#B7A88F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logoprincipal" />
+</androidx.constraintlayout.widget.ConstraintLayout>
