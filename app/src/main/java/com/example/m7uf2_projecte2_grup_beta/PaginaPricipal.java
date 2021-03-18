@@ -13,7 +13,7 @@ public class PaginaPricipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_pricipal);
 
-
+        //Codi que ens permet fer que la vista inicial duri els segons que nosaltres vulguem.
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
