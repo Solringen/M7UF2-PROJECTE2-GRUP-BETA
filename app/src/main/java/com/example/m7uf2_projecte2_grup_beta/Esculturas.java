@@ -2,6 +2,8 @@ package com.example.m7uf2_projecte2_grup_beta;
 
 import com.google.firebase.firestore.Blob;
 
+
+
 public class Esculturas {
     private String id;
     private String titol;
