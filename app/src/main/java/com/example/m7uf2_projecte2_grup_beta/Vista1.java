@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class PaginaPricipal extends AppCompatActivity {
+public class Vista1 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class PaginaPricipal extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(PaginaPricipal.this,MainActivity.class);
+                Intent intent = new Intent(Vista1.this, Vista2.class);
                 startActivity(intent);
                 finish();
             }
