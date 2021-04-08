@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.M7UF2PROJECTE2GRUPBETA">
+        <activity android:name=".EjemploBaseDeDatos"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity
-            android:name=".EjemploBaseDeDatos"
+            android:name=".PaginaPricipal"
             android:label="@string/app_name"
             android:theme="@style/Theme.M7UF2PROJECTE2GRUPBETA.NoActionBar">
             <intent-filter>
