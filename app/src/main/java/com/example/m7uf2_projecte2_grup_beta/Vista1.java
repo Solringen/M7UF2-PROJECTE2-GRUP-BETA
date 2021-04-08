@@ -11,7 +11,7 @@ public class Vista1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pagina_pricipal);
+        setContentView(R.layout.activity_vista1);
 
         //Codi que ens permet fer que la vista inicial duri els segons que nosaltres vulguem.
         new Handler().postDelayed(new Runnable() {
