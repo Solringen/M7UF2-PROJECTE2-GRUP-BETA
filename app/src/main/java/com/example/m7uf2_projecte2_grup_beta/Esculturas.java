@@ -1,6 +1,6 @@
-package baseDeDatos;
+package com.example.m7uf2_projecte2_grup_beta;
 
-import java.sql.Blob;
+import com.google.firebase.firestore.Blob;
 
 public class Esculturas {
     private String id;
@@ -10,7 +10,9 @@ public class Esculturas {
     private Blob imatge;
     private String descripcion;
     private Artistas artista;
+   public  Esculturas(){
 
+   }
     public Esculturas(String id, String titol, String ubicacio, Blob audio, Blob imatge, String descripcion, Artistas artista) {
         this.id = id;
         this.titol = titol;
@@ -79,14 +81,14 @@ public class Esculturas {
 
     @Override
     public String toString() {
-        return "Esculturas{" +
+        return " Esculturas{" +
                 "id='" + id + '\'' +
-                ", titol='" + titol + '\'' +
-                ", ubicacio='" + ubicacio + '\'' +
-                ", audio=" + audio +
-                ", imatge=" + imatge +
-                ", descripcion='" + descripcion + '\'' +
-                ", artista=" + artista +
+                ",\n titol='" + titol + '\'' +
+                ",\n ubicacio='" + ubicacio + '\'' +
+                ",\n audio=" + audio +
+                ",\n imatge=" + imatge +
+                ",\n descripcion='" + descripcion + '\'' +
+                ",\n artista=" + artista+
                 '}';
     }
 }

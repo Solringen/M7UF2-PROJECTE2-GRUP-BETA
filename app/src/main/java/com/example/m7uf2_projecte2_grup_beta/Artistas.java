@@ -1,6 +1,8 @@
-package baseDeDatos;
+package com.example.m7uf2_projecte2_grup_beta;
 
-import java.sql.Blob;
+import com.google.firebase.firestore.Blob;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Artistas {
@@ -11,8 +13,10 @@ public class Artistas {
     private Blob imatge;
     private String biografia;
     private String correntArtistic;
-    private List<String> escultura;
+    private List<String> escultura = new ArrayList<String>();
+     public Artistas(){
 
+     }
     public Artistas(String id, String nom, String cogNom, Blob audio, Blob imatge, String biografia, String correntArtistic, List<String> escultura) {
         this.id = id;
         this.nom = nom;
@@ -91,14 +95,14 @@ public class Artistas {
     @Override
     public String toString() {
         return "Artistas{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", cogNom='" + cogNom + '\'' +
-                ", audio=" + audio +
-                ", imatge=" + imatge +
-                ", biografia='" + biografia + '\'' +
-                ", correntArtistic='" + correntArtistic + '\'' +
-                ", escultura=" + escultura +
+                " id='" + id + '\'' +
+                ",\n nom='" + nom + '\'' +
+                ",\n cogNom='" + cogNom + '\'' +
+                ",\n audio=" + audio +
+                ",\n imatge=" + imatge +
+                ",\n biografia='" + biografia + '\'' +
+                ",\n correntArtistic='" + correntArtistic + '\'' +
+                ",\n escultura=" + escultura +
                 '}';
     }
 }
