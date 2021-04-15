@@ -9,4 +9,42 @@
     tools:context=".Vista2">
 
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvBotonera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/fons_fosc"
+        app:itemIconTint="@color/color_botonera_inferior"
+        app:itemTextColor="@color/color_botonera_inferior"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/botonera_inferior" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="com.example.m7uf2_projecte2_grup_beta.FragmentFundacio"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bnvBotonera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_fundacion">
+
+    </androidx.fragment.app.FragmentContainerView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_fundacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_barra"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
