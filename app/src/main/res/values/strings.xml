@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">M7UF2-PROJECTE2-GRUP-BETA</string>
+    <string name="app_name"></string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -10,4 +10,25 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_prueba">prueba</string>
+
+    <string name="bt_nav_fundacio">Fundació</string>
+    <string name="bt_nav_mapa">Mapa</string>
+    <string name="bt_nav_escultures">Escultures</string>
+    <string name="bt_nav_artistes">Artistes</string>
+    <string name="fundacion_text">
+        "Les escultures de la Fundació Fèlix Estrada i \nSaladich Monistrol de Calders"
+
+        "\n\nAquestes escultures formaven part de la col·lecció de Fèlix Estrada i Saladich, fill de Monistrol de Calders, on havia nascut el 1901."
+
+        "\n\nEstaven repartides per la finca d’El Pedregar, situada a Bellaterra, on es podien visitar en un marc ajardinat de gran bellesa,en visites organitzades, que tingueren molt d’èxit a les darreres dècades del segle XX."
+         "\n\nFormaven part d’un dels projectes de Fèlix Estrada i Saladich, gran amant de l’art, sobretot de l’escultura (d’altres projectes seus es desenvoluparen en el món dels negocis: el principal fou l’empresa Mobles La Fàbrica, encara existent avui dia)."
+
+        "\n\nHavien estat encarregades pel mateix posseïdor de la col·lecció a diversos escultors, catalans i de fora de Catalunya."
+
+        "\n\nUn antic empleat de Fèlix Estrada i Saladich, a més familiar seu, Maties Ponsa i Saladich, va esdevenir batlle de Monistrol de Calders l’any 2011.Va arribar a un accord amb la família i es va veure l’oportunitat de cedir gratuïtament la major part d’escultures que quedaven a Bellaterra al poble natal de Fèlix Estrada i Saladich. "
+
+        "\n\nL’any 2015 es materialitzava el trasllat i la instal·lació de les escultures als carrers de Monistrol de Calders.                                "
+
+    </string>
+
 </resources>

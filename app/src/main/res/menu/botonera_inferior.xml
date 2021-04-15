@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.m7uf2_projecte2_grup_beta.Vista2">
+
+    <item
+        android:id="@+id/itVistaFundacio"
+        android:icon="@drawable/botonera_iconacoleccio"
+        android:orderInCategory="100"
+        android:title="@string/bt_nav_fundacio"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itVistaMapa"
+        android:enabled="true"
+        android:icon="@drawable/botonera_iconamapa"
+        android:orderInCategory="100"
+        android:title="@string/bt_nav_mapa"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itVistaEscultures"
+        android:enabled="true"
+        android:icon="@drawable/botonera_iconaescultures"
+        android:orderInCategory="100"
+        android:title="@string/bt_nav_escultures"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itVistaArtistes"
+        android:enabled="true"
+        android:icon="@drawable/botonera_iconaartistes"
+        android:orderInCategory="100"
+        android:title="@string/bt_nav_artistes"
+        android:visible="true"
+        app:showAsAction="never" />
+</menu>
