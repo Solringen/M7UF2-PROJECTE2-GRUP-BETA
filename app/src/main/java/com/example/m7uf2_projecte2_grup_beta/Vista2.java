@@ -1,5 +1,6 @@
 package com.example.m7uf2_projecte2_grup_beta;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,11 @@ public class Vista2 extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Toast.makeText(Vista2.this, item.toString(), Toast.LENGTH_LONG).show();
+                if(item.getTitle().equals("Escultures")){
+                    Intent intent = new Intent(Vista2.this, Vista4.class);
+                    startActivity(intent);
+                    finish();
+                }
                 return true;
             }
         });
