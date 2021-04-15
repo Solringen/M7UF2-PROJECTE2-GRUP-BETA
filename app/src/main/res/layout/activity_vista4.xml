@@ -6,4 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".Vista4">
 
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvBotoneraVista4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/fons_fosc"
+        app:itemIconTint="@color/color_botonera_inferior"
+        app:itemTextColor="@color/color_botonera_inferior"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/botonera_inferior" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
