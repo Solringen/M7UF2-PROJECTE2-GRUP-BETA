@@ -39,6 +39,19 @@ public class Vista2 extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+
+                else if(item.getTitle().equals("Mapa")){
+                    Intent intent = new Intent(Vista2.this, Vista3.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else if(item.getTitle().equals("Artistes")){
+                    Intent intent = new Intent(Vista2.this, Vista5.class);
+                    startActivity(intent);
+                    finish();
+                }
+
                 return true;
             }
         });
