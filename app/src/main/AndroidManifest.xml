@@ -12,6 +12,7 @@
         <activity android:name=".Vista5"></activity>
         <activity android:name=".Vista3" />
         <activity android:name=".Vista4" />
+        <activity android:name=".MapsActivity" />
         <activity android:name=".EjemploBaseDeDatos" />
         <activity
             android:name=".Vista2"
@@ -30,6 +31,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        s
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCL-HBOAWStTd1s5kXDt9BJHZtgOgSVep0" />
     </application>
 
 </manifest>

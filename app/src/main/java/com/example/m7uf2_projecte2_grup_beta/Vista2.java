@@ -41,7 +41,7 @@ public class Vista2 extends AppCompatActivity {
                 }
 
                 else if(item.getTitle().equals("Mapa")){
-                    Intent intent = new Intent(Vista2.this, Vista3.class);
+                    Intent intent = new Intent(Vista2.this, MapsActivity.class);
                     startActivity(intent);
                     finish();
                 }

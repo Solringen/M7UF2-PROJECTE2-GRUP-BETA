@@ -43,5 +43,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng ubicacio = new LatLng( 41.60985061194154, 1.8427093109114916);
         mMap.addMarker(new MarkerOptions().position(ubicacio).title("Ajuntament de Monistrol"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacio));
-    }
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 16.0f));    }
 }
