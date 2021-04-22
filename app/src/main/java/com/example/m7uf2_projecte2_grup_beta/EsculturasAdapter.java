@@ -15,7 +15,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 
-public class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, EsculturasAdapterFirestore.EsculturasHolder> {
+class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, EsculturasAdapterFirestore.EsculturasHolder> {
 
     // Classe "holder" que proporciona una referència a als components de cada element
     // de la llista. La declarem com a classe interna per millorar l'encapsulació de l'Adapter.
