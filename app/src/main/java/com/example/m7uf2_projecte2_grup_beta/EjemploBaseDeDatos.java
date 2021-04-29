@@ -3,9 +3,13 @@ package com.example.m7uf2_projecte2_grup_beta;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -15,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.firestore.Blob;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +27,11 @@ public class EjemploBaseDeDatos extends AppCompatActivity {
     private Button btInsertar,btEsculturas,btArtista;
     private TextView tvContenido;
     FirebaseFirestore db;
-    private Blob foto = Blob.fromBytes(new byte[]{3, 5, 1, 2, 7, 3, 9, 2, 3, 5});
+    private Blob foto;
     private Blob audio = Blob.fromBytes(new byte[]{3, 5, 1, 2, 7, 3, 9, 2, 3, 5});
     private List<String> obras = new ArrayList<String>();
 
+    @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +41,28 @@ public class EjemploBaseDeDatos extends AppCompatActivity {
         btArtista = findViewById(R.id.btArtistas);
         btEsculturas = findViewById(R.id.btEsculturas);
         tvContenido =findViewById(R.id.tvContenido);
+
+
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setImageResource(R.drawable.botonera_iconaartistes);
+        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        foto = Blob.fromBytes(baos.toByteArray());
+
+
+
+
+
+
         db=FirebaseFirestore.getInstance();
         btInsertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Artistas a1 = new Artistas("A01", "Josep Sobrado", "Balboa",audio, foto, "esto es bigrafia de josep", "corrent artistic de josep,", obras);
-                Esculturas e1 = new Esculturas("E01","Toscadeiro","Monistrol de Calders",audio, foto,"descrpcion de obra",a1);
+                Artistas a1 = new Artistas("A01", "Josep Sobrado", "Balboa",audio,foto, "esto es bigrafia de josep", "corrent artistic de josep,", obras);
+                Esculturas e1 = new Esculturas("E03","Ciborra","Monistrol de Calders",audio, foto,"descrpcion de obra",a1);
                 db.collection("Esculturas")
-                        .document("E01")
+                        .document("E03")
                         .set(e1)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

@@ -30,8 +30,6 @@ class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, Es
             tv01 = (TextView) itemView.findViewById(R.id.tv01);
             image01 = (ImageView) itemView.findViewById(R.id.image01);
 
-            tv02 = (TextView) itemView.findViewById(R.id.tv02);
-            image02 = (ImageView) itemView.findViewById(R.id.image02);
         }
     }
 
@@ -47,13 +45,14 @@ class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, Es
     @Override
     protected void onBindViewHolder(@NonNull EsculturasHolder holder, int position, @NonNull Esculturas esc) {
         holder.tv01.setText(esc.getTitol());
-        holder.tv02.setText(esc.getTitol());
 
-        Bitmap bmp = BitmapFactory.decodeByteArray(esc.getImatge().toBytes(), 0, esc.getImatge().toBytes().length);
-        holder.image01.setImageBitmap(Bitmap.createScaledBitmap(bmp, holder.image01.getWidth(), holder.image01.getHeight(), false));
 
-        Bitmap bmp01 = BitmapFactory.decodeByteArray(esc.getImatge().toBytes(), 0, esc.getImatge().toBytes().length);
-        holder.image02.setImageBitmap(Bitmap.createScaledBitmap(bmp01, holder.image02.getWidth(), holder.image02.getHeight(), false));
+        // Hem de lligar la primera foto que tenim al List de fotos de l'objecte amb l'ImageView
+        // que tenim en cadascun dels elements del RecyclerView
+        if (esc.getImatge()!= null ) {
+            holder.image01.setImageResource(R.drawable.botonera_iconacoleccio);
+        }
+
     }
 
     // Mètode que fa l'inflate (conversió de XML a objectes) de cada element del RecyclerView a partir
