@@ -20,7 +20,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Blob;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EjemploBaseDeDatos extends AppCompatActivity {
@@ -36,7 +39,6 @@ public class EjemploBaseDeDatos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ejemplo_base_de_datos);
-        obras.add("E01");
         btInsertar = findViewById(R.id.btInsertar);
         btArtista = findViewById(R.id.btArtistas);
         btEsculturas = findViewById(R.id.btEsculturas);
@@ -59,22 +61,67 @@ public class EjemploBaseDeDatos extends AppCompatActivity {
         btInsertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Artistas a1 = new Artistas("A01", "Josep Sobrado", "Balboa",audio,foto, "esto es bigrafia de josep", "corrent artistic de josep,", obras);
-                Esculturas e1 = new Esculturas("E03","Ciborra","Monistrol de Calders",audio, foto,"descrpcion de obra",a1);
-                db.collection("Esculturas")
-                        .document("E03")
-                        .set(e1)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void v) {
-                                Toast.makeText(EjemploBaseDeDatos.this,"Insercio correcta",Toast.LENGTH_LONG).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EjemploBaseDeDatos.this,"La insercio ha fallat"+e.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
+
+                List<Artistas> arts = Arrays.asList(
+                        new Artistas("A01", "Josep Sobrado", "Balboa",audio,foto, "esto es bigrafia de josep", "corrent artistic de josep,", obras),
+                        new Artistas("A01", "Josep Sobrado", "Balboa",audio,foto, "esto es bigrafia de josep", "corrent artistic de josep,", obras));
+
+                List<Esculturas> ec = Arrays.asList(new Esculturas("E01","Ciborra","Monistrol de Calders","descrpcion de obra",arts.get(1)));
+                Esculturas al = ec.get(0);
+                try {
+                    // Consultem la mida del fitxer e_sisif.jpg que tenim guardat a la carpeta assets.
+                    int mida = (int)EjemploBaseDeDatos.this.getAssets().openFd("e_sisif.jpg").getLength();
+                    byte[] buffer = new byte[mida];
+
+                    // Preparem un InputStream per poder llegir el contingut de l'arxiu.
+                    InputStream is =EjemploBaseDeDatos.this.getAssets().open("e_sisif.jpg");
+
+                    // Llegim el contingut i tanquem el fitxer.
+                    is.read(buffer);
+                    is.close();
+
+                    // Carreguem el array de bytes sobre l'objecte alumne, en el seu atribut fotos,
+                    // convertint l'array de bytes a Blob.
+                    al.getFotos().add(Blob.fromBytes(buffer));
+
+
+                    // Consultem la mida del fitxer e_ballant_amb_les_onades.jpg que tenim guardat a la carpeta assets.
+                    mida = (int)EjemploBaseDeDatos.this.getAssets().openFd("e_ballant_amb_les_onades.jpg").getLength();
+                    buffer = new byte[mida];
+
+                    // Preparem un InputStream per poder llegir el contingut de l'arxiu.
+                    is = EjemploBaseDeDatos.this.getAssets().open("e_ballant_amb_les_onades.jpg");
+
+                    // Llegim el contingut i tanquem el fitxer.
+                    is.read(buffer);
+                    is.close();
+
+                    // Carreguem el array de bytes sobre l'objecte alumne, en el seu atribut fotos,
+                    // convertint l'array de bytes a Blob.
+                    al.getFotos().add(Blob.fromBytes(buffer));
+                }
+                catch (IOException ioe) {
+
+                }
+
+                // Bucle que fa la inserció dels alumnes que conté la Collection alums.
+                for (Esculturas a: ec) {
+                    db.collection("Esculturas")
+                            .document(a.getId())
+                            .set(a)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void v) {
+                                    // En cas que la inserció hagi anat bé, no farem res en especial.
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(EjemploBaseDeDatos.this, "La inserció ha fallat: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                                        }
+                                                    }
+                    );
+                }
 
             }
         });
@@ -121,7 +168,15 @@ public class EjemploBaseDeDatos extends AppCompatActivity {
             }
         });
 
+
+
     }
+    public void GuardarImagen(Esculturas s){
+
+
+
+    }
+
 
 
 }

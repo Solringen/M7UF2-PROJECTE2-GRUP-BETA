@@ -1,28 +1,31 @@
 package com.example.m7uf2_projecte2_grup_beta;
 
 import com.google.firebase.firestore.Blob;
+import com.google.firebase.firestore.DocumentReference;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Esculturas {
     private String id;
     private String titol;
     private String ubicacio;
-    private Blob audio;
-    private Blob imatge;
     private String descripcion;
     private Artistas artista;
-   public  Esculturas(){
 
+    private List<Blob> fotos;
+    private List<Blob> audios;
+   public  Esculturas(){
+       this.fotos = new ArrayList<Blob>();
    }
-    public Esculturas(String id, String titol, String ubicacio, Blob audio, Blob imatge, String descripcion, Artistas artista) {
+    public Esculturas(String id, String titol, String ubicacio,String descripcion, Artistas artista) {
         this.id = id;
         this.titol = titol;
         this.ubicacio = ubicacio;
-        this.audio = audio;
-        this.imatge = imatge;
         this.descripcion = descripcion;
         this.artista = artista;
+        this.fotos = new ArrayList<Blob>();
     }
 
     public String getId() {
@@ -49,22 +52,6 @@ public class Esculturas {
         this.ubicacio = ubicacio;
     }
 
-    public Blob getAudio() {
-        return audio;
-    }
-
-    public void setAudio(Blob audio) {
-        this.audio = audio;
-    }
-
-    public Blob getImatge() {
-        return imatge;
-    }
-
-    public void setImatge(Blob imatge) {
-        this.imatge = imatge;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -81,16 +68,32 @@ public class Esculturas {
         this.artista = artista;
     }
 
+    public List<Blob> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(List<Blob> fotos) {
+        this.fotos = fotos;
+    }
+
+    public List<Blob> getAudios() {
+        return audios;
+    }
+
+    public void setAudios(List<Blob> audios) {
+        this.audios = audios;
+    }
+
     @Override
     public String toString() {
-        return " Esculturas{" +
+        return "Esculturas{" +
                 "id='" + id + '\'' +
-                ",\n titol='" + titol + '\'' +
-                ",\n ubicacio='" + ubicacio + '\'' +
-                ",\n audio=" + audio +
-                ",\n imatge=" + imatge +
-                ",\n descripcion='" + descripcion + '\'' +
-                ",\n artista=" + artista+
+                ", titol='" + titol + '\'' +
+                ", ubicacio='" + ubicacio + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", artista=" + artista +
+                ", fotos=" + fotos +
+                ", audios=" + audios +
                 '}';
     }
 }

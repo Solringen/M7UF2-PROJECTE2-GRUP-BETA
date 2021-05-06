@@ -49,8 +49,15 @@ class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, Es
 
         // Hem de lligar la primera foto que tenim al List de fotos de l'objecte amb l'ImageView
         // que tenim en cadascun dels elements del RecyclerView
-        if (esc.getImatge()!= null ) {
-            holder.image01.setImageResource(R.drawable.botonera_iconacoleccio);
+        if (esc.getFotos() != null && esc.getFotos().size() > 0) {
+            // Agafem la primera foto de l'array de fotos i la posem a l'ImageView
+            Bitmap bMap = BitmapFactory.decodeByteArray(
+                    esc.getFotos().get(0).toBytes(), 0, esc.getFotos().get(0).toBytes().length);
+            holder.image01.setImageBitmap(bMap);
+        }
+        else {
+            // Si no hi ha fotos hi posem una imatge per defecte.
+            holder.image01.setImageResource(R.drawable.appbar_iconaanar);
         }
 
     }
