@@ -8,9 +8,8 @@
     <TextView
         android:id="@+id/tv01"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="match_parent"
+        android:background="#FDFDFD"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#222121"
@@ -19,12 +18,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/image01"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/image01" />
+        app:layout_constraintStart_toStartOf="@+id/image01"
+        app:layout_constraintTop_toBottomOf="@+id/image01" />
 
     <ImageView
         android:id="@+id/image01"
         android:layout_width="0dp"
         android:layout_height="323dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/tv01"
         app:layout_constraintEnd_toEndOf="parent"
