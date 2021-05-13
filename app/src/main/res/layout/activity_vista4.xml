@@ -23,10 +23,9 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAlumnes"
+        android:id="@+id/rvEsculturas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/bnvBotoneraVista4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

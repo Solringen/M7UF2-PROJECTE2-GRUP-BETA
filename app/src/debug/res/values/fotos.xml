@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="opciones">
+        <item>e_sisif.jpg</item>
+        <item>e_la_familia.jpg</item>
+        <item>e_monolit.jpg</item>
+        <item>e_ballant_amb_les_onades.jpg</item>
+        <item>e_superficie_esferica.jpg</item>
+        <item>e_cinta_esferica.jpg</item>
+        <item>e_tocho.jpg</item>
+        <item>e_santa_teresa.jpg</item>
+        <item>e_xiquets_de_valls.jpg</item>
+        <item>e_joventut.jpg</item>
+        <item>e_maternidad_peruana.jpg</item>
+        <item>e_cangur.jpg</item>
+        <item>e_gat.jpg</item>
+        <item>e_pingui.jpg</item>
+        <item>e_gos_dogo.jpg</item>
+        <item>e_girafa.jpg</item>
+        <item>e_os_polar.jpg</item>
+        <item>e_porc_senglar.jpg</item>
+        <item>e_dona_asseguda.jpg</item>
+        <item>e_dama.jpg</item>
+        <item>e_cercant_l_estel.jpg</item>
+        <item>e_la_venus_del_mar.jpg</item>
+        <item>e_musica_i_vent.jpg</item>
+        <item>e_toscadeiro.jpg</item>
+        <item>e_tronc_art_africa.jpg</item>
+
+
+
+    </string-array>
+    <string-array name="opciones02">
+        <item>a_cesar.jpg</item>
+        <item>a_sebastia.jpg</item>
+        <item>a_des.jpg</item>
+        <item>a_joan_serafini.jpg</item>
+        <item>a_vicente_larrea.jpg</item>
+        <item>a_enrique_salamanca.jpg</item>
+        <item>a_javier_sauras.jpg</item>
+        <item>a_tomas_crespo.jpg</item>
+        <item>a_josep_maria.jpg</item>
+        <item>a_margarida_sans.jpg</item>
+        <item>a_jose_carrilero.jpg</item>
+        <item>a_emili_colom.jpg</item>
+        <item>a_josep_canals.jpg</item>
+        <item>a_des.jpg</item>
+        <item>a_des.jpg</item>
+        <item>a_des.jpg</item>
+
+    </string-array>
+</resources>

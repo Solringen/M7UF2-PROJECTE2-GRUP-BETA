@@ -9,23 +9,25 @@ public class Artistas {
     private String id;
     private String nom;
     private String cogNom;
-    private Blob audio;
-    private Blob imatge;
+    private List<Blob> fotos;
+    private List<Blob> audios;
     private String biografia;
     private String correntArtistic;
-    private List<String> escultura = new ArrayList<String>();
-     public Artistas(){
+    private List<Esculturas> escultura;
 
+     public Artistas(){
+         this.fotos = new ArrayList<Blob>();
      }
-    public Artistas(String id, String nom, String cogNom, Blob audio, Blob imatge, String biografia, String correntArtistic, List<String> escultura) {
+
+    public Artistas(String id, String nom, String cogNom, String biografia, String correntArtistic, List<Esculturas> escultura) {
         this.id = id;
         this.nom = nom;
         this.cogNom = cogNom;
-        this.audio = audio;
-        this.imatge = imatge;
         this.biografia = biografia;
         this.correntArtistic = correntArtistic;
         this.escultura = escultura;
+        this.fotos = new ArrayList<Blob>();
+
     }
 
     public String getId() {
@@ -52,20 +54,20 @@ public class Artistas {
         this.cogNom = cogNom;
     }
 
-    public Blob getAudio() {
-        return audio;
+    public List<Blob> getFotos() {
+        return fotos;
     }
 
-    public void setAudio(Blob audio) {
-        this.audio = audio;
+    public void setFotos(List<Blob> fotos) {
+        this.fotos = fotos;
     }
 
-    public Blob getImatge() {
-        return imatge;
+    public List<Blob> getAudios() {
+        return audios;
     }
 
-    public void setImatge(Blob imatge) {
-        this.imatge = imatge;
+    public void setAudios(List<Blob> audios) {
+        this.audios = audios;
     }
 
     public String getBiografia() {
@@ -84,25 +86,25 @@ public class Artistas {
         this.correntArtistic = correntArtistic;
     }
 
-    public List<String> getEscultura() {
+    public List<Esculturas> getEscultura() {
         return escultura;
     }
 
-    public void setEscultura(List<String> escultura) {
+    public void setEscultura(List<Esculturas> escultura) {
         this.escultura = escultura;
     }
 
     @Override
     public String toString() {
         return "Artistas{" +
-                " id='" + id + '\'' +
-                ",\n nom='" + nom + '\'' +
-                ",\n cogNom='" + cogNom + '\'' +
-                ",\n audio=" + audio +
-                ",\n imatge=" + imatge +
-                ",\n biografia='" + biografia + '\'' +
-                ",\n correntArtistic='" + correntArtistic + '\'' +
-                ",\n escultura=" + escultura +
+                "id='" + id + '\'' +
+                ", nom='" + nom + '\'' +
+                ", cogNom='" + cogNom + '\'' +
+                ", fotos=" + fotos +
+                ", audios=" + audios +
+                ", biografia='" + biografia + '\'' +
+                ", correntArtistic='" + correntArtistic + '\'' +
+                ", escultura=" + escultura +
                 '}';
     }
 }

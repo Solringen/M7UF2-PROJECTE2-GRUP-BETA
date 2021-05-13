@@ -1,18 +1,24 @@
 package com.example.m7uf2_projecte2_grup_beta;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 public class Vista4 extends AppCompatActivity {
-
-    RecyclerView rvAlumnes;
+    BottomNavigationView bnvBotonera;
+    RecyclerView rvEsculturas;
     RecyclerView.LayoutManager alumnesLayout;
     FirebaseFirestore db;
     public static EsculturasAdapterFirestore adapterEsculturas;
@@ -20,7 +26,38 @@ public class Vista4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista4);
-        rvAlumnes = findViewById(R.id.rvAlumnes);
+        rvEsculturas = findViewById(R.id.rvEsculturas);
+
+
+        // Obtenim les referències necessàries als components de la interfície.
+        bnvBotonera = findViewById(R.id.bnvBotoneraVista4);
+
+        bnvBotonera.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Toast.makeText(Vista4.this, item.toString(), Toast.LENGTH_LONG).show();
+                if(item.getTitle().equals("Fundació")){
+                    Intent intent = new Intent(Vista4.this, Vista2.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else if(item.getTitle().equals("Mapa")){
+                    Intent intent = new Intent(Vista4.this, MapsActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else if(item.getTitle().equals("Artistes")){
+                    Intent intent = new Intent(Vista4.this, Vista5.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                return true;
+            }
+        });
+        bnvBotonera.setSelectedItemId(R.id.itVistaEscultures);
 
         // Obtenim una instància d'accés a la base de dades Firestore.
         db = FirebaseFirestore.getInstance();
@@ -29,7 +66,7 @@ public class Vista4 extends AppCompatActivity {
         // el new GridLayout...(), indicant el nombre de columnes.
         //alumnesLayout = new LinearLayoutManager(this);
         alumnesLayout = new GridLayoutManager(this, 2);
-        rvAlumnes.setLayoutManager(alumnesLayout);
+        rvEsculturas.setLayoutManager(alumnesLayout);
 
         // Preparem la consulta que obtindrà les dades a visualitzar en el RecyclerView.
         Query consulta = db.collection("Esculturas").limit(50);
@@ -46,7 +83,7 @@ public class Vista4 extends AppCompatActivity {
         adapterEsculturas = new EsculturasAdapterFirestore(opcions);
 
         // Associem l'adapter creat amb el RecyclerView que tenim a la vista.
-        rvAlumnes.setAdapter(adapterEsculturas);
+        rvEsculturas.setAdapter(adapterEsculturas);
 
     }
 

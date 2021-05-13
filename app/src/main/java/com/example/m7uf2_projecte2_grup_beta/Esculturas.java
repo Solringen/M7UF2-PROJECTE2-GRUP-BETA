@@ -11,20 +11,29 @@ public class Esculturas {
     private String id;
     private String titol;
     private String ubicacio;
-    private String descripcion;
-    private Artistas artista;
+    private  String any;
+    private String material;
+    private String alcada;
+    private  String amplada;
+    private  String pes;
+    private String idArtista;
 
     private List<Blob> fotos;
     private List<Blob> audios;
    public  Esculturas(){
        this.fotos = new ArrayList<Blob>();
    }
-    public Esculturas(String id, String titol, String ubicacio,String descripcion, Artistas artista) {
+
+    public Esculturas(String id, String titol, String ubicacio, String any, String material, String alcada, String amplada, String pes, String idArtista) {
         this.id = id;
         this.titol = titol;
         this.ubicacio = ubicacio;
-        this.descripcion = descripcion;
-        this.artista = artista;
+        this.any = any;
+        this.material = material;
+        this.alcada = alcada;
+        this.amplada = amplada;
+        this.pes = pes;
+        this.idArtista = idArtista;
         this.fotos = new ArrayList<Blob>();
     }
 
@@ -52,20 +61,52 @@ public class Esculturas {
         this.ubicacio = ubicacio;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getAny() {
+        return any;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setAny(String any) {
+        this.any = any;
     }
 
-    public Artistas getArtista() {
-        return artista;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setArtista(Artistas artista) {
-        this.artista = artista;
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getAlcada() {
+        return alcada;
+    }
+
+    public void setAlcada(String alcada) {
+        this.alcada = alcada;
+    }
+
+    public String getAmplada() {
+        return amplada;
+    }
+
+    public void setAmplada(String amplada) {
+        this.amplada = amplada;
+    }
+
+    public String getPes() {
+        return pes;
+    }
+
+    public void setPes(String pes) {
+        this.pes = pes;
+    }
+
+    public String getArtista() {
+        return idArtista;
+    }
+
+    public void setArtista(String idArtista) {
+        this.idArtista = idArtista;
     }
 
     public List<Blob> getFotos() {
@@ -90,8 +131,12 @@ public class Esculturas {
                 "id='" + id + '\'' +
                 ", titol='" + titol + '\'' +
                 ", ubicacio='" + ubicacio + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", artista=" + artista +
+                ", any='" + any + '\'' +
+                ", material='" + material + '\'' +
+                ", alcada='" + alcada + '\'' +
+                ", amplada='" + amplada + '\'' +
+                ", pes='" + pes + '\'' +
+                ", artista=" + idArtista +
                 ", fotos=" + fotos +
                 ", audios=" + audios +
                 '}';

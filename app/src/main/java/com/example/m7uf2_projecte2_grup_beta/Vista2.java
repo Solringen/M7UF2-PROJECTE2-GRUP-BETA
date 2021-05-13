@@ -60,10 +60,14 @@ public class Vista2 extends AppCompatActivity {
 
 
 
+
+
+
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.botonera_arriba,menu);
         return true;
     }
+
 
 
 }

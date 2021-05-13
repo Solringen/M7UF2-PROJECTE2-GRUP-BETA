@@ -13,14 +13,16 @@
         android:id="@+id/bnvBotonera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         app:backgroundTint="@color/fons_fosc"
+        app:itemHorizontalTranslationEnabled="false"
         app:itemIconTint="@color/color_botonera_inferior"
         app:itemTextColor="@color/color_botonera_inferior"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/botonera_inferior" >
+        app:menu="@menu/botonera_inferior">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

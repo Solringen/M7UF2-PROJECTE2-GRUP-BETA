@@ -17,11 +17,11 @@ public class Vista1 extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Vista1.this, Vista4.class);
+                Intent intent = new Intent(Vista1.this, Vista2.class);
                 startActivity(intent);
                 finish();
             }
-        },5000);
+        },1000);
 
     }
 }

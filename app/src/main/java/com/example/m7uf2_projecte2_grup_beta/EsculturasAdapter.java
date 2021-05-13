@@ -1,5 +1,6 @@
 package com.example.m7uf2_projecte2_grup_beta;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -7,12 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, EsculturasAdapterFirestore.EsculturasHolder> {
@@ -44,8 +49,9 @@ class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, Es
     // on els volem visualitzar dins de cada element del RecyclerView
     @Override
     protected void onBindViewHolder(@NonNull EsculturasHolder holder, int position, @NonNull Esculturas esc) {
+        FirebaseFirestore db;
+        db= FirebaseFirestore.getInstance();
         holder.tv01.setText(esc.getTitol());
-
 
         // Hem de lligar la primera foto que tenim al List de fotos de l'objecte amb l'ImageView
         // que tenim en cadascun dels elements del RecyclerView
@@ -57,8 +63,16 @@ class EsculturasAdapterFirestore extends FirestoreRecyclerAdapter<Esculturas, Es
         }
         else {
             // Si no hi ha fotos hi posem una imatge per defecte.
-            holder.image01.setImageResource(R.drawable.appbar_iconaanar);
+            holder.image01.setImageResource(R.drawable.foto1);
         }
+
+        holder.image01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.tv01.setText("Has pulsado escultura: "+esc.getTitol());
+            }
+        });
+
 
     }
 
