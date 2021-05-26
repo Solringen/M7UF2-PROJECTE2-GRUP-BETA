@@ -2,7 +2,17 @@ package com.example.m7uf2_projecte2_grup_beta;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Base64;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,10 +21,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter  {
 
     private GoogleMap mMap;
 
@@ -48,7 +59,65 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng ubicacio = new LatLng(41.60985061194154, 1.8427093109114916);
         mMap.addMarker(new MarkerOptions().position(ubicacio).title("Ajuntament de Monistrol"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacio));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 16.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 50.0f));
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setInfoWindowAdapter(this);
+    }
+
+    public View getInfoWindow(Marker marker) {
+        return null;
+        //return prepareInfoView(marker);
+    }
+
+
+    public View getInfoContents(Marker marker) {
+        //return null;
+        return prepareInfoView(marker);
+
+    }
+
+    private View prepareInfoView(Marker marker){
+        //prepare InfoView programmatically
+
+        LinearLayout infoView = new LinearLayout(MapsActivity.this);
+        LinearLayout.LayoutParams infoViewParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        TextView TOPInfoLat = new TextView(MapsActivity.this);
+        TOPInfoLat.setText("Ajuntament de monistrol");
+
+        TOPInfoLat.setTextSize(20);
+        TOPInfoLat.setGravity(Gravity.CENTER);
+        infoView.setOrientation(LinearLayout.VERTICAL);
+
+        infoView.setLayoutParams(infoViewParams);
+        infoView.addView(TOPInfoLat);
+
+        ImageView infoImageView = new ImageView(MapsActivity.this);
+        infoImageView.setImageResource(R.drawable.foto1);
+        infoView.addView(infoImageView);
+
+        LinearLayout subInfoView = new LinearLayout(MapsActivity.this);
+
+
+
+        TextView subInfoLat = new TextView(MapsActivity.this);
+        subInfoLat.setText("Veure fitxa");
+        subInfoLat.setTextSize(15);
+        infoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, Vista5.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        subInfoLat.setGravity(Gravity.CENTER);
+
+
+        subInfoView.addView(subInfoLat);
+        infoView.addView(subInfoView);
+
+        return infoView;
     }
 }
