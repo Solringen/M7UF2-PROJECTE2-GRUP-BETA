@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EjemploBaseDeDatos extends AppCompatActivity {
+public class  EjemploBaseDeDatos extends AppCompatActivity {
     private Button btInsertar,btEsculturas,btArtista;
     private TextView tvContenido;
     FirebaseFirestore db;
