@@ -1,5 +1,6 @@
 package com.example.m7uf2_projecte2_grup_beta;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,15 +26,13 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter  {
 
     private GoogleMap mMap;
-    FirebaseFirestore db;
+    BottomNavigationView bnvBotonera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         GoogleMapOptions options = new GoogleMapOptions().zoomControlsEnabled(true);
+        // Obtenim les referències necessàries als components de la interfície.
+        bnvBotonera = findViewById(R.id.bnvBotoneraVistaMaps);
+
+        bnvBotonera.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Toast.makeText(MapsActivity.this, item.toString(), Toast.LENGTH_LONG).show();
+                if(item.getTitle().equals("Fundació")){
+                    Intent intent = new Intent(MapsActivity.this, Vista2.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else if(item.getTitle().equals("Escultures")){
+                    Intent intent = new Intent(MapsActivity.this, Vista4.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else if(item.getTitle().equals("Artistes")){
+                    Intent intent = new Intent(MapsActivity.this, Vista5.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                return true;
+            }
+        });
+        bnvBotonera.setSelectedItemId(R.id.itVistaMapa);
 
     }
 
@@ -56,15 +85,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-
-
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         // Add a marker in our desired ubication and move the camera
-        LatLng ubicacio = new LatLng(41.7601128,2.0111789);
-        mMap.addMarker(new MarkerOptions().position(ubicacio).title("Sísif"));
-
+        LatLng ubicacio = new LatLng(41.60985061194154, 1.8427093109114916);
+        mMap.addMarker(new MarkerOptions().position(ubicacio).title("Ajuntament de Monistrol"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacio));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 50.0f));
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -91,7 +118,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         TextView TOPInfoLat = new TextView(MapsActivity.this);
-        TOPInfoLat.setText("Sísif");
+        TOPInfoLat.setText("Ajuntament de monistrol");
+
         TOPInfoLat.setTextSize(20);
         TOPInfoLat.setGravity(Gravity.CENTER);
         infoView.setOrientation(LinearLayout.VERTICAL);
@@ -105,22 +133,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LinearLayout subInfoView = new LinearLayout(MapsActivity.this);
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
 
+
+        TextView subInfoLat = new TextView(MapsActivity.this);
+        subInfoLat.setText("Veure fitxa");
+        subInfoLat.setTextSize(15);
+        infoView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onInfoWindowClick(Marker marker) {
-                Intent intent = new Intent(MapsActivity.this, Vista4.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, Vista5.class);
                 startActivity(intent);
                 finish();
             }
         });
+        subInfoLat.setGravity(Gravity.CENTER);
 
 
-
-
+        subInfoView.addView(subInfoLat);
         infoView.addView(subInfoView);
 
         return infoView;
     }
-
 }

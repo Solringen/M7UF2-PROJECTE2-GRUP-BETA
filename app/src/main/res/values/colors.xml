@@ -7,10 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="fons_fosc">#FF000000</color>
+    <color name="fons_fosc">#FF231f20</color>
     <color name="primer_pla">#FFFFFFFF</color>
     <color name="blau_escultures">#FF6B88B2</color>
     <color name="sorrenca">#FFB4AF9C</color>
     <color name="sorrenca_fosc">#FFB4AF9C</color>
-    <color name="color_barra">#FF251E1E</color>
+    <color name="color_barra">#FF231f20</color>
 </resources>
