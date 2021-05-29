@@ -6,9 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,17 +20,22 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter  {
-
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter {
+    FirebaseFirestore db;
     private GoogleMap mMap;
     BottomNavigationView bnvBotonera;
+    Esculturas e1;
+    TextView TOPInfoLat,subInfoLat;
+    ImageView infoImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +54,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Toast.makeText(MapsActivity.this, item.toString(), Toast.LENGTH_LONG).show();
-                if(item.getTitle().equals("Fundació")){
+                if (item.getTitle().equals("Fundació")) {
                     Intent intent = new Intent(MapsActivity.this, Vista2.class);
                     startActivity(intent);
                     finish();
-                }
-
-                else if(item.getTitle().equals("Escultures")){
+                } else if (item.getTitle().equals("Escultures")) {
                     Intent intent = new Intent(MapsActivity.this, Vista4.class);
                     startActivity(intent);
                     finish();
-                }
-
-                else if(item.getTitle().equals("Artistes")){
+                } else if (item.getTitle().equals("Artistes")) {
                     Intent intent = new Intent(MapsActivity.this, Vista5.class);
                     startActivity(intent);
                     finish();
@@ -73,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
         bnvBotonera.setSelectedItemId(R.id.itVistaMapa);
-
+        db= FirebaseFirestore.getInstance();
     }
 
     /**
@@ -93,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng ubicacio = new LatLng(41.60985061194154, 1.8427093109114916);
         mMap.addMarker(new MarkerOptions().position(ubicacio).title("Ajuntament de Monistrol"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacio));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 50.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacio, 20.0f));
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setInfoWindowAdapter(this);
     }
@@ -110,15 +109,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private View prepareInfoView(Marker marker){
+    public View prepareInfoView(Marker marker) {
         //prepare InfoView programmatically
 
         LinearLayout infoView = new LinearLayout(MapsActivity.this);
         LinearLayout.LayoutParams infoViewParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        TextView TOPInfoLat = new TextView(MapsActivity.this);
-        TOPInfoLat.setText("Ajuntament de monistrol");
+        TOPInfoLat = new TextView(MapsActivity.this);
+        TOPInfoLat.setText("AA");
 
         TOPInfoLat.setTextSize(20);
         TOPInfoLat.setGravity(Gravity.CENTER);
@@ -127,23 +126,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         infoView.setLayoutParams(infoViewParams);
         infoView.addView(TOPInfoLat);
 
-        ImageView infoImageView = new ImageView(MapsActivity.this);
+        infoImageView = new ImageView(MapsActivity.this);
         infoImageView.setImageResource(R.drawable.foto1);
         infoView.addView(infoImageView);
 
         LinearLayout subInfoView = new LinearLayout(MapsActivity.this);
 
 
-
-        TextView subInfoLat = new TextView(MapsActivity.this);
-        subInfoLat.setText("Veure fitxa");
+        subInfoLat = new TextView(MapsActivity.this);
         subInfoLat.setTextSize(15);
-        infoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapsActivity.this, Vista5.class);
+        ConsultaEscultura();
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(MapsActivity.this, Vista4_1.class);
+                intent.putExtra("Es", "E01");
                 startActivity(intent);
-                finish();
             }
         });
         subInfoLat.setGravity(Gravity.CENTER);
@@ -154,4 +151,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         return infoView;
     }
+    public void  ConsultaEscultura(){
+        db.collection("Esculturas")
+                .document("E01")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()) {
+                            Esculturas e1 = documentSnapshot.toObject(Esculturas.class);
+                            Bitmap bMap = BitmapFactory.decodeByteArray(
+                                    e1.getFotos().get(0).toBytes(), 0, e1.getFotos().get(0).toBytes().length);
+                            TOPInfoLat.setText(e1.getTitol());
+                            infoImageView.setImageBitmap(bMap);
+                            ConsultaArtistas(e1.getId());
+
+                        }
+                       /* else{
+                            Toast.makeText(EjemploBaseDeDatos.this, "Escultura no existe", Toast.LENGTH_LONG).show();
+                        }*/
+                    }
+                });
+
+    }
+
+    public void  ConsultaArtistas(String s) {
+        db.collection("Artistas")
+                .document(s)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            Artistas a2 = documentSnapshot.toObject(Artistas.class);
+                            subInfoLat.setText(a2.getNom() + " "+a2.getCogNom());
+                        } else {
+                            Toast.makeText(MapsActivity.this, "Artista no existe", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+
 }
