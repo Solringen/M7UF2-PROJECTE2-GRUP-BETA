@@ -3,9 +3,12 @@ package com.example.m7uf2_projecte2_grup_beta;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -42,6 +45,7 @@ public class Vista4_1 extends AppCompatActivity {
         db=FirebaseFirestore.getInstance();
         ConsultaEscultura();
 
+
         bnvBotonera.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -69,7 +73,15 @@ public class Vista4_1 extends AppCompatActivity {
         });
         bnvBotonera.setSelectedItemId(R.id.itVistaEscultures);
 
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Si hay conexión a Internet en este momento
+        } else {
+            Toast.makeText(Vista4_1.this, "Sin Conexión a internet \n El informaciones de escultura no es actual", Toast.LENGTH_LONG).show();
+
+        }
 
     }
 

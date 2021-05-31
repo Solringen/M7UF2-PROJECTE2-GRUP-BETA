@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -84,6 +87,16 @@ public class Vista4 extends AppCompatActivity {
 
         // Associem l'adapter creat amb el RecyclerView que tenim a la vista.
         rvEsculturas.setAdapter(adapterEsculturas);
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Si hay conexión a Internet en este momento
+        } else {
+            Toast.makeText(Vista4.this, "Sin Conexión a internet", Toast.LENGTH_LONG).show();
+
+        }
 
     }
 

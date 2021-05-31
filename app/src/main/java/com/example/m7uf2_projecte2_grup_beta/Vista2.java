@@ -1,7 +1,10 @@
 package com.example.m7uf2_projecte2_grup_beta;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +32,15 @@ public class Vista2 extends AppCompatActivity {
         tbFundacio =findViewById(R.id.tb_fundacion);
         setSupportActionBar(tbFundacio);
 
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Si hay conexión a Internet en este momento
+        } else {
+            Toast.makeText(Vista2.this, "Sin Conexión a internet", Toast.LENGTH_LONG).show();
+
+        }
 
         // Obtenim les referències necessàries als components de la interfície.
         bnvBotonera = findViewById(R.id.bnvBotoneraVista2);

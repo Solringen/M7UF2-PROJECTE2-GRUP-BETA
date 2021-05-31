@@ -3,9 +3,12 @@ package com.example.m7uf2_projecte2_grup_beta;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -50,6 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtenim les referències necessàries als components de la interfície.
         bnvBotonera = findViewById(R.id.bnvBotoneraVistaMaps);
 
+
         bnvBotonera.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -73,6 +77,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         bnvBotonera.setSelectedItemId(R.id.itVistaMapa);
         db= FirebaseFirestore.getInstance();
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Si hay conexión a Internet en este momento
+        } else {
+            Toast.makeText(getApplicationContext(), "Sin Conexión a internet", Toast.LENGTH_LONG).show();
+
+        }
     }
 
     /**
@@ -148,8 +162,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         subInfoView.addView(subInfoLat);
         infoView.addView(subInfoView);
-
+        ConsultaEscultura();
         return infoView;
+
     }
     public void  ConsultaEscultura(){
         db.collection("Esculturas")
